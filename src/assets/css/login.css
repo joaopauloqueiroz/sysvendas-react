@@ -1,0 +1,15 @@
+.error::after{
+	border-bottom: 2px solid #f90018 !important;
+}
+.success::after{
+	border-bottom: 2px solid #28a745 !important;
+}
+
+.log{
+	color: red;
+	font-weight: bold;
+}
+.in{
+	color: #000;
+	font-weight: bold;
+}

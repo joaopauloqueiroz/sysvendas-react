@@ -17,7 +17,7 @@ class Home extends React.Component{
         super(props);
         this.state = {
             comics: [],
-            links: [{link: '/', name: 'Characters'},{link: '/comics', name: 'Comics'}],
+            links: [{link: '/', name: 'Characters'},{link: '/comics', name: 'Comics'},{link: '/events', name: 'Events'},{link: '/stories', name: 'Stories'}],
             load: false,
         }
     }

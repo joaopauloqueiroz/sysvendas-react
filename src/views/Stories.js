@@ -10,8 +10,9 @@ import GridContainer from '../components/Grid/GridContainer.jsx'
 import dashboardStyle from "../assets/jss/material-dashboard-react/layouts/dashboardStyle.jsx";
 import withStyles from "@material-ui/core/styles/withStyles";
 import loader from "../assets/img/loader.gif";
+import 'isomorphic-fetch'
 
-class Home extends React.Component{
+class Stories extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -21,9 +22,11 @@ class Home extends React.Component{
         }
     }
 
+  
+
     componentDidMount(){
         let parent = this;
-        fetch('http://gateway.marvel.com/v1/public/characters?ts=1995&apikey=304bf468bf68eb9e3b86094a7c7ecc17&hash=0af9fadbe28e6ebd60335f47eddaf60a')
+        fetch('http://gateway.marvel.com/v1/public/stories?ts=1995&apikey=304bf468bf68eb9e3b86094a7c7ecc17&hash=0af9fadbe28e6ebd60335f47eddaf60a')
 
         .then(
             function(response) {
@@ -53,13 +56,13 @@ class Home extends React.Component{
        let card = this.state.comics.map((item, i) => (
         item.thumbnail.path+"."+item.thumbnail.extension != "http://i.annihil.us/u/prod/marvel/i/mg/b/40/image_not_available.jpg"?
                 <GridItem md={4} key={item+i}>
-                <Card>
+                <Card key={item}>
                 <CardHeader>
                     <img src={item.thumbnail.path+"."+item.thumbnail.extension} width="100%" height="200px"/>
                 </CardHeader>
-                <CardBody style={{fontSize: '14px', fontFamily: 'Roboto, sans-serif', fontWeight: 'bold', textAlign: 'center'}}>
+                <CardBody style={{fontSize: '14px', fontFamily: 'Roboto, sans-serif', fontWeight: 'bold', textAlign: 'center'}} key={i}>
                     
-                    <p data-toggle="collapse" data-target={"#collapseExample"+i} aria-expanded="false" aria-controls={"collapseExample"+i} style={{cursor: 'pointer'}}>{item.name}</p>
+                    <p data-toggle="collapse" data-target={"#collapseExample"+i} aria-expanded="false" aria-controls={"collapseExample"+i} style={{cursor: 'pointer'}}>{item.title}</p>
                    
                     <div className="collapse" id={"collapseExample"+i} style={{fontFamily: 'Roboto, sans-serif', fontSize: '12px', fontWeight: 'normal'}}>
                             {item.description == "" ? "Not description!" : item.description}
@@ -69,11 +72,12 @@ class Home extends React.Component{
             </GridItem> : null
        ));
         return (
+
             <div>
             <Header links={this.state.links}/>
             {this.state.load ? 
             <div className="container">
-            <GridContainer><div style={{textAlign: 'center', fontFamily: 'Roboto sans,serif', fontSize: '40px',  width: '100%'}}>Marvel Characters</div></GridContainer>
+            <GridContainer><div style={{textAlign: 'center', fontFamily: 'Roboto sans,serif', fontSize: '40px',  width: '100%'}}>Marvel Comics</div></GridContainer>
             <GridContainer style={{backgroundColor: '#e0dede', marginBottom: '30px', boxShadow: 'rgba(248, 249, 249, 0.15) 0px 4px 20px 0px, rgba(224, 222, 226, 10) 0px 7px 10px -5px'}}>
                 {card}
             </GridContainer>
@@ -106,4 +110,4 @@ class Home extends React.Component{
     }
 }
 
-export default withStyles(dashboardStyle)(Home);
+export default withStyles(dashboardStyle)(Stories);

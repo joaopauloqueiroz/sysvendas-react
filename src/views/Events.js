@@ -11,7 +11,7 @@ import dashboardStyle from "../assets/jss/material-dashboard-react/layouts/dashb
 import withStyles from "@material-ui/core/styles/withStyles";
 import loader from "../assets/img/loader.gif";
 
-class Home extends React.Component{
+class Events extends React.Component{
     constructor(props){
         super(props);
         this.state = {
@@ -23,7 +23,7 @@ class Home extends React.Component{
 
     componentDidMount(){
         let parent = this;
-        fetch('http://gateway.marvel.com/v1/public/characters?ts=1995&apikey=304bf468bf68eb9e3b86094a7c7ecc17&hash=0af9fadbe28e6ebd60335f47eddaf60a')
+        fetch('http://gateway.marvel.com/v1/public/events?ts=1995&apikey=304bf468bf68eb9e3b86094a7c7ecc17&hash=0af9fadbe28e6ebd60335f47eddaf60a')
 
         .then(
             function(response) {
@@ -59,7 +59,7 @@ class Home extends React.Component{
                 </CardHeader>
                 <CardBody style={{fontSize: '14px', fontFamily: 'Roboto, sans-serif', fontWeight: 'bold', textAlign: 'center'}}>
                     
-                    <p data-toggle="collapse" data-target={"#collapseExample"+i} aria-expanded="false" aria-controls={"collapseExample"+i} style={{cursor: 'pointer'}}>{item.name}</p>
+                    <p data-toggle="collapse" data-target={"#collapseExample"+i} aria-expanded="false" aria-controls={"collapseExample"+i} style={{cursor: 'pointer'}}>{item.title}</p>
                    
                     <div className="collapse" id={"collapseExample"+i} style={{fontFamily: 'Roboto, sans-serif', fontSize: '12px', fontWeight: 'normal'}}>
                             {item.description == "" ? "Not description!" : item.description}
@@ -106,4 +106,4 @@ class Home extends React.Component{
     }
 }
 
-export default withStyles(dashboardStyle)(Home);
+export default withStyles(dashboardStyle)(Events);
